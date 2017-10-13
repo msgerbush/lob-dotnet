@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Lob.Internal
+namespace Lob
 {
     public class CredentialStore : ICredentialStore
     {

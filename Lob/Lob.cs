@@ -1,5 +1,4 @@
 ﻿using System;
-using Lob.Internal;
 
 namespace Lob
 {
@@ -9,8 +8,8 @@ namespace Lob
         public static readonly TimeSpan Timeout = TimeSpan.FromSeconds(20);
         public static readonly string ContentType = "application/json";
 
-        public LobClient(ProductHeaderValue productInformation, ICredentialStore credentialStore)
-            : this(new Connection(productInformation, LobApiUrl, credentialStore))
+        public LobClient(string appIdentifier, ICredentialStore credentialStore)
+            : this(new Connection(new ProductHeaderValue(appIdentifier), LobApiUrl, credentialStore))
         {
         }
 
