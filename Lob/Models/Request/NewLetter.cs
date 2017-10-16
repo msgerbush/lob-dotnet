@@ -8,13 +8,13 @@ namespace Lob
             object to,
             object from,
             string file,
+            int perforatedPage,
             string description = null,
             bool color = true,
             object mergeVariables = null,
             bool doubleSided = false,
             string addressPlacement = "top_first_page",
             bool returnEnvelope = false,
-            bool perforatedPage = false,
             string mailType = "usps_first_class",
             string extraService = null,
             Nullable <DateTime> sendDate = null,
@@ -57,7 +57,7 @@ namespace Lob
 
         public bool ReturnEnvelope { get; set; }
 
-        public bool PerforatedPage { get; set; }
+        public int PerforatedPage { get; set; }
 
         public string MailType { get; set; }
 

@@ -17,7 +17,7 @@ namespace Lob
             bool doubleSided,
             string addressPlacement,
             bool returnEnvelope,
-            bool perforatedPage,
+            int perforatedPage,
             string mailType,
             string extraService,
             DateTime sendDate,
@@ -59,7 +59,7 @@ namespace Lob
 
         public bool ReturnEnvelope { get; protected set; }
 
-        public bool PerforatedPage { get; protected set; }
+        public int PerforatedPage { get; protected set; }
 
         public string MailType { get; protected set; }
 

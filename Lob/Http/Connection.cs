@@ -1,10 +1,10 @@
 ﻿using System;
 using Lob.Internal;
 using System.Threading.Tasks;
-using System.Net;
 using System.Net.Http;
 using System.Globalization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Lob
 {
@@ -85,13 +85,28 @@ namespace Lob
         public IApiResponse<T> DeserializeResponse<T>(IResponse response)
         {
             var body = response.Body as string;
-            var json = JsonConvert.DeserializeObject<T>(body);
+            DefaultContractResolver contractRersolver = new DefaultContractResolver()
+            {
+                NamingStrategy = new CamelCaseNamingStrategy()
+            };
+            var json = JsonConvert.DeserializeObject<T>(body, new JsonSerializerSettings
+            {
+                ContractResolver = contractRersolver
+            });
             return new ApiResponse<T>(response, json);
         }
 
         public void SerializeRequest(IRequest request)
         {
-            request.Body = JsonConvert.SerializeObject(request.Body, Formatting.Indented);
+            DefaultContractResolver contractResolver = new DefaultContractResolver()
+            {
+                NamingStrategy = new SnakeCaseNamingStrategy()
+            };
+            request.Body = JsonConvert.SerializeObject(request.Body, new JsonSerializerSettings
+            {
+                ContractResolver = contractResolver,
+                Formatting = Formatting.Indented
+            });
         }
 
         public Uri BaseAddress { get; private set; }
