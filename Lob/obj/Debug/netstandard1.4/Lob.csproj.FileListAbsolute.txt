@@ -1,8 +1,0 @@
-C:\Users\sh\Code\lob-dotnet\Lob\bin\Debug\netstandard1.4\Lob.deps.json
-C:\Users\sh\Code\lob-dotnet\Lob\bin\Debug\netstandard1.4\Lob.dll
-C:\Users\sh\Code\lob-dotnet\Lob\bin\Debug\netstandard1.4\Lob.pdb
-C:\Users\sh\Code\lob-dotnet\Lob\obj\Debug\netstandard1.4\Lob.csprojResolveAssemblyReference.cache
-C:\Users\sh\Code\lob-dotnet\Lob\obj\Debug\netstandard1.4\Lob.csproj.CoreCompileInputs.cache
-C:\Users\sh\Code\lob-dotnet\Lob\obj\Debug\netstandard1.4\Lob.AssemblyInfo.cs
-C:\Users\sh\Code\lob-dotnet\Lob\obj\Debug\netstandard1.4\Lob.dll
-C:\Users\sh\Code\lob-dotnet\Lob\obj\Debug\netstandard1.4\Lob.pdb
