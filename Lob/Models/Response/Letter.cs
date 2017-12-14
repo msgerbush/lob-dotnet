@@ -17,11 +17,11 @@ namespace Lob
             bool doubleSided,
             string addressPlacement,
             bool returnEnvelope,
-            int perforatedPage,
+            int? perforatedPage,
             string mailType,
             string extraService,
             DateTime sendDate,
-            object metaData) {
+            object metadata) {
             Id = id;
             Description = description;
             To = to;
@@ -36,7 +36,7 @@ namespace Lob
             MailType = mailType;
             ExtraService = extraService;
             SendDate = sendDate;
-            MetaData = metaData;
+            Metadata = metadata;
         }
 
         public string Id { get; protected set; }
@@ -59,7 +59,7 @@ namespace Lob
 
         public bool ReturnEnvelope { get; protected set; }
 
-        public int PerforatedPage { get; protected set; }
+        public int? PerforatedPage { get; protected set; }
 
         public string MailType { get; protected set; }
 
@@ -67,6 +67,6 @@ namespace Lob
 
         public DateTime SendDate { get; protected set; }
 
-        public object MetaData { get; protected set; }
+        public object Metadata { get; protected set; }
     }
 }
