@@ -64,6 +64,8 @@ namespace Lob
         Task<IApiResponse<T>> SendDataInternal<T>(object body, string accepts, string contentType, Request request)
         {
             request.Body = body;
+            request.BaseAddress = BaseAddress;
+            request.ContentType = contentType;
             return Run<T>(request);
         }
 
@@ -123,7 +125,7 @@ namespace Lob
 
         static string FormatUserAgent(ProductHeaderValue productInformation)
         {
-            return string.Format(CultureInfo.InvariantCulture, "Lob/v1 C# .NET/", productInformation);
+            return string.Format(CultureInfo.InvariantCulture, "Lob/v1 C# .NET/4.6", productInformation);
         }
     }
 }
