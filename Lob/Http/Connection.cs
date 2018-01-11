@@ -125,7 +125,7 @@ namespace Lob
 
         static string FormatUserAgent(ProductHeaderValue productInformation)
         {
-            return string.Format(CultureInfo.InvariantCulture, "Lob/v1 C# .NET/4.6", productInformation);
+            return string.Format(CultureInfo.InvariantCulture, "Lob/v1 C# .NET/4.6");
         }
     }
 }
