@@ -12,7 +12,7 @@ namespace Lob
     {
         public ApiConnection(IConnection connection)
         {
-
+            Connection = connection;
         }
 
         public IConnection Connection { get; set; }
