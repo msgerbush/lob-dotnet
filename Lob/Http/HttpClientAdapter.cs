@@ -104,44 +104,7 @@ namespace Lob.Internal
 
         public async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
         {
-            var clonedRequest = await CloneHttpRequestMessageAsync(request).ConfigureAwait(false);
-
-            return await _http.SendAsync(request, HttpCompletionOption.ResponseContentRead).ConfigureAwait(false);
-        }
-
-        public static async Task<HttpRequestMessage> CloneHttpRequestMessageAsync(HttpRequestMessage oldRequest)
-        {
-            var newRequest = new HttpRequestMessage(oldRequest.Method, oldRequest.RequestUri);
-
-            var ms = new MemoryStream();
-            if (oldRequest.Content != null)
-            {
-                await oldRequest.Content.CopyToAsync(ms).ConfigureAwait(false);
-                ms.Position = 0;
-                newRequest.Content = new StreamContent(ms);
-
-                if (oldRequest.Content.Headers != null)
-                {
-                    foreach (var h in oldRequest.Headers)
-                    {
-                        newRequest.Content.Headers.Add(h.Key, h.Value);
-                    }
-                }
-            }
-
-            newRequest.Version = oldRequest.Version;
-
-            foreach (var header in oldRequest.Headers)
-            {
-                newRequest.Headers.TryAddWithoutValidation(header.Key, header.Value);
-            }
-
-            foreach (var property in oldRequest.Properties)
-            {
-                newRequest.Properties.Add(property);
-            }
-
-            return newRequest;
+           return await _http.SendAsync(request, HttpCompletionOption.ResponseContentRead).ConfigureAwait(false);
         }
 
         internal class RedirectHandler : DelegatingHandler

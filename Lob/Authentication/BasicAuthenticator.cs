@@ -13,7 +13,7 @@ namespace Lob.Internal
                 CultureInfo.InvariantCulture,
                 "Basic {0}",
                 Convert.ToBase64String(Encoding.UTF8.GetBytes(
-                    string.Format(CultureInfo.InvariantCulture, "{0}:{1}", credentials.ApiKey))));
+                    string.Format(CultureInfo.InvariantCulture, "{0}:", credentials.ApiKey))));
 
             request.Headers["Authorization"] = header;
         }
