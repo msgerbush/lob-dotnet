@@ -3,7 +3,10 @@ using Lob.Internal;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Globalization;
+using Lob.Http;
+using Lob.Models.Response;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 
 namespace Lob
@@ -72,7 +75,12 @@ namespace Lob
         async Task<IApiResponse<T>> Run<T>(IRequest request)
         {
             var response = await RunRequest(request).ConfigureAwait(false);
-            return DeserializeResponse<T>(response);
+            if ((int)response.StatusCode >= 200 && (int)response.StatusCode <= 299)
+            {
+                return DeserializeResponse<T>(response);
+            }
+            
+            throw new LobException(DeserializeError(response));
         }
 
         async Task<IResponse> RunRequest(IRequest request)
@@ -82,6 +90,12 @@ namespace Lob
             await _authenticator.Apply(request).ConfigureAwait(false);
             var response = await _httpClient.Send(request).ConfigureAwait(false);
             return response;
+        }
+
+        private static IApiResponse<LobError> DeserializeError(IResponse response)
+        {
+            var error = JObject.Parse(response.Body as string)["error"].ToObject<LobError>();
+            return new ApiResponse<LobError>(response, error);
         }
 
         public IApiResponse<T> DeserializeResponse<T>(IResponse response)
